@@ -9,9 +9,11 @@ NC Plus One is a backend REST API designed for an events platform. It acts as th
 
 **Requirements**
 * `psql` is installed
+* A `.env` file should be created with your own credentials, an example of what's required is available to view in `.env.example`
 
 **Setup**
 
 To set up the database run the following command:
 
 `psql -U [USERNAME] -f db/setup.sql`
+
