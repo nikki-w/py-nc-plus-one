@@ -1,8 +1,8 @@
 """File containing functions to seed the data in the nc_plus_one database."""
 
-from load_json import load_data_from_json
-from drop_tables import drop_tables
-from create_tables import create_tables
+from .load_json import load_data_from_json
+from .drop_tables import drop_tables
+from .create_tables import create_tables
 from psycopg2.extensions import connection
 
 def seed_user_data(conn: connection, user_data: list[dict]) -> None:
