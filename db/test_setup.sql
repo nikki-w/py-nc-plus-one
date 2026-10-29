@@ -1,6 +1,6 @@
 -- Setup script for the nc_plus_one_test database
 
--- DROP DATABASE nc_plus_one_test;
+DROP DATABASE nc_plus_one_test;
 CREATE DATABASE nc_plus_one_test;
 
 \c nc_plus_one_test

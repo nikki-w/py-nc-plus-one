@@ -5,6 +5,8 @@ import psycopg2
 
 from dotenv import load_dotenv
 
+load_dotenv(dotenv_path="./.env.test")
+
 def get_connection() -> None:
     """Establishes a database connection."""
     load_dotenv()

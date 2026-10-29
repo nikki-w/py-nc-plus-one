@@ -10,7 +10,7 @@ def create_users_table(conn: connection) -> None:
                             CREATE TABLE users (
                                 id INT GENERATED ALWAYS AS IDENTITY,
                                 email VARCHAR(255) UNIQUE NOT NULL,
-                                password VARCHAR(255) NOT NULL,
+                                password_hash VARCHAR(255) NOT NULL,
                                 name VARCHAR(255) NOT NULL,
                                 created_at TIMESTAMPTZ DEFAULT NOW(),
                                 PRIMARY KEY (id)

@@ -1,11 +1,11 @@
 """File containing functions to seed the data in the nc_plus_one database."""
-
 from psycopg2.extensions import connection
 
-from .load_json import load_data_from_json
-from .drop_tables import drop_tables
-from .create_tables import create_tables
-from.passwords import hash_password
+from src.load_json import load_data_from_json
+from src.drop_tables import drop_tables
+from src.create_tables import create_tables
+from src.passwords import hash_password
+from src.connection import get_connection
 
 def seed_user_data(conn: connection, user_data: list[dict]) -> None:
     """Seeds data into the users table in nc_plus_one database."""
@@ -13,7 +13,7 @@ def seed_user_data(conn: connection, user_data: list[dict]) -> None:
 
         seed_user_data_to_table =  """
                                     INSERT INTO users 
-                                        (email, password, name)
+                                        (email, password_hash, name)
                                     VALUES 
                                         (%s, %s, %s);
                                     """
@@ -94,3 +94,8 @@ def seed(conn: connection) -> None:
     seed_event_data(conn, event_data)
     seed_rsvp_data(conn, rsvp_data)
 
+
+if __name__ == "__main__":
+    
+    conn = get_connection()
+    seed(conn)
