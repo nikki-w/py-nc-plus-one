@@ -11,13 +11,13 @@ def get_events():
     conn = get_connection()
     with conn.cursor() as cur:
         cur.execute("SELECT * FROM events;")
-        columns = [desc for desc in cur.description]
+        columns = [desc[0] for desc in cur.description]
         rows = cur.fetchall()
     conn.close()
     return {"events": [dict(zip(columns, row)) for row in rows]}
 
 
-@app.get("/events/{event_id}", status_code=200)
+@app.get("/events/{event_id}", status_code=201)
 def get_event_from_id(event_id: int):
     conn = get_connection()
     with conn.cursor() as cur:
@@ -31,7 +31,7 @@ def get_event_from_id(event_id: int):
                         ON e.venue_id = v.id
                     WHERE e.id = %s;
                     """, (event_id,))
-        columns = [desc for desc in cur.description]
+        columns = [desc[0] for desc in cur.description]
         row = cur.fetchone()
     conn.close()
 
