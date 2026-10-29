@@ -23,6 +23,11 @@ def get_events():
 def get_event_from_id(event_id: int):
     conn = get_connection()
     with conn.cursor() as cur:
+
+        # Raise exception if the integer isn't valid before attempting to to execute
+        if event_id < 1:
+            raise HTTPException(status_code=400, detail="Id is not a valid integer.")
+
         cur.execute("""
                     SELECT e.id, e.title, e.description, e.starts_at, e.ends_at, v.name AS location, v.address, v.capacity, e.created_at
                     FROM events AS e
@@ -34,14 +39,25 @@ def get_event_from_id(event_id: int):
         row = cur.fetchone()
     conn.close()
 
-    if event_id < 1:
-        raise HTTPException(status_code=400, detail="Id is not a valid integer.")
-
-
+    # If an event isn't found then return a 404 error
     if row is None:
         raise HTTPException(status_code=404, detail="Event not found")
 
     return {"event": dict(zip(columns, row))}
+
+# @app.post("/events", status_code=201)
+# def create_mission():
+#     conn = get_connection()
+#     with conn.cursor() as cur:
+#         cur.execute(
+#             "INSERT INTO missions (name, destination, spacecraft_id) VALUES (%s, %s, %s) RETURNING *",
+#             (mission.name, mission.destination, mission.spacecraft_id)
+#         )
+#         columns = [desc[0] for desc in cur.description]
+#         row = cur.fetchone()
+
+#     conn.close()
+#     return dict(zip(columns, row))
 
 if __name__ == "__main__":
     conn = get_connection()
