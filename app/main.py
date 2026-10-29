@@ -2,11 +2,9 @@ from fastapi import FastAPI
 from src.connection import get_connection
 from src.seed_functions import seed
 from starlette.exceptions import HTTPException
-# from app.routes.events import events_router
 
 app = FastAPI()
 
-# app.include_router(events_router)
 
 @app.get("/events", status_code=200)
 def get_events():
@@ -45,19 +43,6 @@ def get_event_from_id(event_id: int):
 
     return {"event": dict(zip(columns, row))}
 
-# @app.post("/events", status_code=201)
-# def create_mission():
-#     conn = get_connection()
-#     with conn.cursor() as cur:
-#         cur.execute(
-#             "INSERT INTO missions (name, destination, spacecraft_id) VALUES (%s, %s, %s) RETURNING *",
-#             (mission.name, mission.destination, mission.spacecraft_id)
-#         )
-#         columns = [desc[0] for desc in cur.description]
-#         row = cur.fetchone()
-
-#     conn.close()
-#     return dict(zip(columns, row))
 
 if __name__ == "__main__":
     conn = get_connection()
