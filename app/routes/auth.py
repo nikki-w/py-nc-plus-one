@@ -68,7 +68,7 @@ def login(body: LoginRequest):
     )
 
 
-@auth_router.post("/register")
+@auth_router.post("/register", status_code=201)
 def register(body: RegisterRequest):
 
     if not body.name or body.name == "":
