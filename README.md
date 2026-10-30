@@ -13,7 +13,35 @@ NC Plus One is a backend REST API designed for an events platform. It acts as th
 
 **Setup**
 
-To set up the database run the following command:
+Start by creating a virtual environment:
+
+`python -m venv .venv`
+`source .venv/bin/activate`
+
+Install any requirements from `requirements.txt`:
+
+`pip install -r requirements.txt`
+
+Create a `.env` (an example of the format can be found in the file `.env.example`):
+
+`touch .env`
+
+To set up the database and seed it with data run the following commands:
 
 `psql -U [USERNAME] -f db/setup.sql`
+`python src/seed_functions.py`
 
+In a different terminal start up the API by running the folowing:
+
+`uvicorn app.main:app --reload`
+
+---
+**_Note on testing:_**
+
+Tests have been created to ensure functions and endpoints work as expected. To be able to use these tests, you will need to create a `.env.test` (using the same credentials except for `PGATABASE` which should end in `_test`) and a seperate database for testing. This can be done using the follwoing commands:
+
+`touch .env.test`
+`psql -U [USERNAME] -f db/test_setup.sql`
+`python src/seed_functions.py`
+
+Tests can then be ran using `pytest` in the terminal.
