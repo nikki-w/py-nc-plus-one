@@ -1,4 +1,3 @@
-import pytest
 from datetime import datetime
 from datetime import datetime, timezone
 
@@ -52,4 +51,6 @@ def test_get_event_from_id_returns_the_matching_event(client):
 
     # Tests for created_at
     assert actual_created_at is not None
-    assert datetime.fromisoformat(actual_created_at) 
+    assert datetime.fromisoformat(actual_created_at)
+
+
