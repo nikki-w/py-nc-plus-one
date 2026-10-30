@@ -48,9 +48,10 @@ def register_user(name: str, email: str, password: str) -> dict | None:
                             (%s, %s, %s)
                         RETURNING id, name, email, created_at
                     """, (name.title(), email, password))
-        
+        conn.commit()
         columns = [desc[0] for desc in cur.description]
         row = cur.fetchone()
+  
 
         if row:
             user_dict = {"user": dict(zip(columns, row))}
