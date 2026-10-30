@@ -47,7 +47,7 @@ def register_user(name: str, email: str, password: str) -> dict | None:
                         VALUES
                             (%s, %s, %s)
                         RETURNING id, name, email, created_at
-                    """, (name.capitalize(), email, password))
+                    """, (name.title(), email, password))
         
         columns = [desc[0] for desc in cur.description]
         row = cur.fetchone()
