@@ -1,4 +1,4 @@
-import EventCard, { type EventCardProps } from "./EventCard";
+import EventsCard from "./EventsCard";
 import { useEventsList } from "../hooks/useEventsList";
 
 
@@ -18,8 +18,8 @@ function EventsList() {
         <section className="events-section">
             <h2>Upcoming Events</h2>
             <ul className="events-list">
-                {events.map((event: EventCardProps) => (
-                    <EventCard
+                {events.map((event) => (
+                    <EventsCard
                      key={event.id} {...event} />
                 ))}
             </ul>

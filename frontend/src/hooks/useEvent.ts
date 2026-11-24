@@ -1,14 +1,5 @@
 import { useState, useEffect } from "react";
-
-export interface EventCardProps {
-    id: number;
-    title: string;
-    description: string;
-    starts_at: string;
-    ends_at: string;
-    organiser_id: number;
-    venue_id: number;
-}
+import type { EventCardProps } from "../components/EventCard";
 
 export function useEvent(id: string | undefined) {
     const [event, setEvent] = useState<EventCardProps | null>(null);

@@ -1,17 +1,9 @@
 import { useState, useEffect } from "react";
+import type { EventsCardProps } from "../components/EventsCard";
 
-export interface EventCardProps {
-    id: number;
-    title: string;
-    description: string;
-    starts_at: string;
-    ends_at: string;
-    organiser_id: number;
-    venue_id: number;
-}
 
 export function useEventsList() {
-    const [events, setEvents] = useState<EventCardProps[]>([]);
+    const [events, setEvents] = useState<EventsCardProps[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -27,7 +19,7 @@ export function useEventsList() {
                     throw new Error(`Unable to load events: ${response.status}`)
                 }
 
-                const data: { events: EventCardProps[] } = await response.json()
+                const data: { events: EventsCardProps[] } = await response.json()
                 setEvents(data.events)
     
             } catch (err){
