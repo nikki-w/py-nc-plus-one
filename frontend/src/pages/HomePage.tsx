@@ -6,6 +6,10 @@ function HomePage() {
                 Welcome to NC Plus One. Browse events, 
                 and manage your plans.
             </p>
+            <section className="next-event">
+                <h2 className="next-event-header">Next Event:</h2>
+                <p>Add next event details here</p>
+            </section>
 
         </>
     )
