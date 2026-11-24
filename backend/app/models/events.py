@@ -6,7 +6,12 @@ def get_all_events() -> dict:
     """Returns all events."""
     conn = get_connection()
     with conn.cursor() as cur:
-        cur.execute("SELECT * FROM events;")
+        cur.execute("""
+                    SELECT e.id, e.title, e.description, e.starts_at, e.ends_at, v.name AS location, v.address, v.capacity, e.created_at
+                    FROM events AS e
+                    JOIN venues AS v
+                        ON e.venue_id = v.id
+                    """)
         columns = [desc[0] for desc in cur.description]
         rows = cur.fetchall()
     conn.close()
