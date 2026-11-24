@@ -1,15 +1,15 @@
+import { BrowserRouter } from 'react-router';
 import './App.css'
-import EventsList from './components/EventsList'
-import HomePage from './components/HomePage'
+import AppRoutes from './AppRoutes'
+
 
 function App() {
 
   return (
-    <>
-      <HomePage/>
-      <EventsList/>
-    </>
+    <BrowserRouter>
+      <AppRoutes/>
+    </BrowserRouter>
   )
 }
 
-export default App
+export default App;
