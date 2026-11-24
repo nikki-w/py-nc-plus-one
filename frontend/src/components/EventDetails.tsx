@@ -18,7 +18,7 @@ function EventDetails() {
 
     return(
         <section className="event-section">
-            <EventCard key={ event.id } {...event}/>
+            <EventCard {...event} showVenueDetails/>
 
         </section>
     )
