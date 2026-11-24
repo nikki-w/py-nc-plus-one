@@ -11,7 +11,7 @@ function EventDetails() {
         return(<p>Loading Events...</p>);
 
     if (error) 
-        return (<p>Error: {error} </p>);
+        return (<p role="alert">Error: {error} </p>);
 
     if (!event) 
         return(<p>No events found</p>)

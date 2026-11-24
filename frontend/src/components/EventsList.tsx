@@ -9,7 +9,7 @@ function EventsList() {
         return(<p>Loading Events...</p>);
 
     if (error) 
-        return (<p>Error: {error} </p>);
+        return (<p role="alert">Error: {error} </p>);
 
     if (events.length === 0) 
         return(<p>No events found</p>)
