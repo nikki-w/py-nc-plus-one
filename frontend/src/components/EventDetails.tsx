@@ -8,13 +8,13 @@ function EventDetails() {
     const {event, isLoading, error} = useEvent(id)
 
     if (isLoading) 
-        return(<p>Loading Events...</p>);
+        return(<p>Loading Event...</p>);
 
     if (error) 
         return (<p role="alert">Error: {error} </p>);
 
     if (!event) 
-        return(<p>No events found</p>)
+        return(<p role="alert">No event found</p>)
 
     return(
         <section className="event-section">
