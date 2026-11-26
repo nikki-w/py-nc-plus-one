@@ -1,3 +1,5 @@
+import NextEvent from "../components/NextEvent";
+
 function HomePage() {
 
     return(
@@ -9,7 +11,10 @@ function HomePage() {
             </p>
             <section className="next-event">
                 <h2 className="next-event-header">Next Event:</h2>
-                <p>Add next event details here</p>
+                {/* Making the assumption that the lowest ID will be 
+                the next upcoming event as they're sorted by date and 
+                once an event passes, the ID's will reshuffle to fill the gap*/}
+                <NextEvent id="1"/>
             </section>
 
         </>
