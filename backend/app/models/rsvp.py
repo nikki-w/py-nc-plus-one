@@ -49,7 +49,7 @@ def create_rsvp(event_id: int, attendee_id: int) -> dict:
             if cur.fetchone() is not None:
                 raise HTTPException(
                     status_code=409,
-                    detail="User has already RSVPed to this event",
+                    detail="User has already RSVP'd to this event",
                 )
         
             # If they havent then allow them to RSVP to the event.
@@ -68,7 +68,7 @@ def create_rsvp(event_id: int, attendee_id: int) -> dict:
             conn.commit()
 
     except psycopg2.errors.ForeignKeyViolation:
-        # Cancel any hanges if the event can't be found in the db.
+        # Cancel any changes if the event can't be found in the db.
         conn.rollback()
         raise HTTPException(status_code=404, detail="Event not found")
     
