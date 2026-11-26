@@ -13,7 +13,7 @@ export function useEvent(id: string | undefined) {
             setIsLoading(true)
             setError(null)
 
-            try{
+            try {
                 const response = await fetch(`${ import.meta.env.VITE_API_URL }/events/${ id }`)
 
                 if (!response.ok) {
@@ -21,6 +21,11 @@ export function useEvent(id: string | undefined) {
                 }
 
                 const data: { event: EventCardProps } = await response.json()
+
+                if (!data.event || !data.event.id) {
+                    throw new Error(`Unable to find event: ${response.status}`)
+                }
+
                 setEvent(data.event)
     
             } catch (err){
