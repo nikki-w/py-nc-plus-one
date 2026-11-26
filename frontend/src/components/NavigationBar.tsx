@@ -14,6 +14,12 @@ function NavigationBar() {
             className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
                 Events    
             </NavLink>
+
+            <NavLink 
+            to="/auth/login" end
+            className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+                Login    
+            </NavLink>
         </nav>
     );
 }
