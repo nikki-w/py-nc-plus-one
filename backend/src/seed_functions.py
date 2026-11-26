@@ -1,11 +1,14 @@
 """File containing functions to seed the data in the nc_plus_one database."""
 from psycopg2.extensions import connection
+from dotenv import load_dotenv
 
 from backend.src.load_json import load_data_from_json
 from backend.src.drop_tables import drop_tables
 from backend.src.create_tables import create_tables
 from backend.src.passwords import hash_password
 from backend.src.connection import get_connection
+
+load_dotenv(dotenv_path=".env", override=True)
 
 def seed_user_data(conn: connection, user_data: list[dict]) -> None:
     """Seeds data into the users table in nc_plus_one database."""
