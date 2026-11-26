@@ -3,7 +3,7 @@ from backend.src.connection import get_connection
 
 
 def get_all_events() -> dict:
-    """Returns all events."""
+    """Returns all events ordered by start time to show upcoming events first."""
     conn = get_connection()
     with conn.cursor() as cur:
         cur.execute("""
@@ -11,6 +11,7 @@ def get_all_events() -> dict:
                     FROM events AS e
                     JOIN venues AS v
                         ON e.venue_id = v.id
+                    ORDER BY e.starts_at;
                     """)
         columns = [desc[0] for desc in cur.description]
         rows = cur.fetchall()
